@@ -1,3 +1,11 @@
+# chatroom
+
+Lightweight web app with chat functionality.
+
+-------
+
+## React Stuff
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
