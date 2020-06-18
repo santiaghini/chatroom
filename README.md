@@ -1,6 +1,6 @@
 # chatroom
 
-Lightweight web app with chat functionality.
+React web app with chat rooms in real-time for friends!
 
 ## Functionalities
 - Custom names for sign up
