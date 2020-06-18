@@ -1,5 +1,6 @@
 import time
-from flask import Flask, request
+import json
+from flask import Flask, request, jsonify
 from flask_socketio import SocketIO, emit, rooms
 from urllib.parse import urlparse, unquote
 
@@ -33,7 +34,7 @@ def find_user(user_name):
 
 
 def clean_users():
-    n_users = users.copy()
+    n_users = json.loads(json.dumps(users))
 
     connect_names = [connected[key] for key in connected.keys()]
 
@@ -66,7 +67,8 @@ def login():
     found_user = find_user(name)
 
     if found_user:
-        if found_user.password == pwd:
+        print('found user', found_user)
+        if found_user['password'] == pwd:
             return {'success': 'welcome'}
         else:
             return {'error': 'pwd is incorrect'}, 400
@@ -99,13 +101,20 @@ def get_user():
     name = body['name']
 
     if not name:
-        return {'error': 'please include name in body'}, 404
+        return {'error': 'please include name in body'}, 400
 
     found_user = find_user(name)
     if found_user:
         return {'success': 'the user exists'}
     else:
         return {'error': 'user not found'}, 404
+
+
+@app.route('/users', methods=['GET'])
+def get_users():
+    user_statuses = clean_users()
+    print(user_statuses)
+    return {'users': user_statuses}
 
 
 @socketio.on('chat')
