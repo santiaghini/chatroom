@@ -2,6 +2,8 @@
 
 React web app with chat rooms in real-time for friends!
 
+See it in action [here!](https://www.loom.com/share/0065f1a19f2e491586f1297fd01639aa)
+
 ## Functionalities
 - Custom names for sign up
 - Modern, yet simple design
